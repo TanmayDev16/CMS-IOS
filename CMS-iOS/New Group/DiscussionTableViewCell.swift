@@ -17,7 +17,7 @@ class DiscussionTableViewCell: UITableViewCell {
     
     
 //    var cellDiscussion = Discussion()
-    
+  //Tanmay
     override func awakeFromNib() {
         super.awakeFromNib()
         contentPreviewLabel.lineBreakMode = .byTruncatingTail

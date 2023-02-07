@@ -173,27 +173,6 @@ class CourseDetailsViewController : UITableViewController, UIGestureRecognizerDe
                                 } else if moduleData.name == "Announcements" {
                                     moduleData.read = true
                                 } else {
-                                    
-//                                    self.tableView.setEmptyView(title: "no", message: "snnouncements"){}
-       
-//
-//                                    self.tableView.setEmptyView(title: "No Announcements", message: "There are currently no announcements"){
-//                                        self.title = "no"
-//                                    }
-//
-//
-//
-                               
-                                       
-                                    
-
-
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
                                     moduleData.read = false
                                 }
                                 if courseContent[i]["modules"][j]["description"].string != nil {
@@ -374,7 +353,6 @@ class CourseDetailsViewController : UITableViewController, UIGestureRecognizerDe
             // if name is not announcements show description
             if selectedModule.name == "Announcements" {
                 performSegue(withIdentifier: "goToAnnoucements", sender: self)
-//                print("hello")
             } else {
                 performSegue(withIdentifier: "goToModule", sender: self)
             }

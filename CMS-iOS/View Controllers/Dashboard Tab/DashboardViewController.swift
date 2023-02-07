@@ -623,8 +623,12 @@ class DashboardViewController : UITableViewController, UISearchBarDelegate, UISe
                 cell.detailTextLabel?.text = searchModules[indexPath.row].coursename
                 
                 
-                //new contribution made by Tanmay
-                cell.contentView.backgroundColor = UIColor.darkGray
+                //update ISSUE#123
+                if #available(iOS 13.0, *) {
+                    cell.contentView.backgroundColor = UIColor.secondarySystemGroupedBackground
+                } else {
+                    // Fallback on earlier versions
+                }
                 //
                 
             }

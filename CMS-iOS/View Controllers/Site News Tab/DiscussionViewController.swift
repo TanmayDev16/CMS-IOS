@@ -25,9 +25,9 @@ class DiscussionViewController: UIViewController, QLPreviewControllerDataSource{
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var openButton: UIButton!
     
-//    @IBOutlet weak var upperbodytextview: UITextView!
+
     @IBOutlet weak var tableview: UITableView!
-//    private var uppertableview = UITableView()
+
 
     
     var quickLookController = QLPreviewController()
@@ -35,24 +35,14 @@ class DiscussionViewController: UIViewController, QLPreviewControllerDataSource{
     var qlLocation = URL(string: "")
     var discussionName : String = "Site_News"
     let constant = Constants.Global.self
+    let discussion = Discussion()
     
-    var discussionViewModels1 = [DiscussionViewModel]()
-    //
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        2
-//    }
-    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "mycell", for: indexPath) as! DiscussionTableViewCell
-//
-//               cell.titleLabel.text = "done"
-//              return cell
-//    }
-    //
+    var discussionViewModels = [DiscussionViewModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        //ISSUE#121  updated the UI according to the specifications
         let cellNib = UINib(nibName: "DiscussionTableViewCell", bundle: nil)
-        self.tableview.register(cellNib, forCellReuseIdentifier: "mycell")
+        self.tableview.register(cellNib, forCellReuseIdentifier: "discussionCell")
         navigationItem.largeTitleDisplayMode = .never
         quickLookController.dataSource = self
         openButton.layer.cornerRadius = 10
@@ -74,39 +64,7 @@ class DiscussionViewController: UIViewController, QLPreviewControllerDataSource{
         }
 
     }
-    //
 
-    
-//
-//    func tableView(_ customtableview: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        //
-//        let cell = customtableview.dequeueReusableCell(withIdentifier: "mycell", for: indexPath) as! DiscussionTableViewCell
-//        let discussionVM1 = self.discussionViewModels1[indexPath.row]
-//
-////        if tableView.visibleCells.isEmpty{
-//            cell.timeLabel.text = discussionVM1.date
-//            cell.contentPreviewLabel.text = discussionVM1.description
-////            cell.contentPreviewLabel.text = "previerw"
-////           var gl = cell.contentPreviewLabel.text
-//
-//            cell.titleLabel.text = discussionVM1.name
-////            cell.titleLabel.textColor =
-//            cell.titleLabel.text = "lala"
-//        cell.titleLabel.backgroundColor = .green
-//
-//            cell.timeLabel.font = discussionVM1.dateFont
-//            cell.titleLabel.font = discussionVM1.titleFont
-////        cell.contentPreviewLabel.font = discussionVM1.desciptionFont
-////            self.tableView.separatorStyle = .singleLine
-//            return cell
-//        //
-//    }
-    
-//    let discussionVM1 = discussionViewModels1
-    
-    
-    //
-    
     override func viewDidAppear(_ animated: Bool) {
         if UIApplication.shared.applicationState == .active {
             setMessage()
@@ -118,21 +76,9 @@ class DiscussionViewController: UIViewController, QLPreviewControllerDataSource{
     }
     
     func setMessage() {
-        if selectedDiscussion.message == ""{
-//            var uitext : UITextField!
-//            print(selectedDiscussion.message)
-//            UITableView().setEmptyView(title: "No Announcements", message: "There are currently no announcements"){
-
-//            }
-//            bodyTextView.text = "no announccements"
-//            if #available(iOS 13.0, *) {
-//                bodyTextView.textColor  = .label
-//            }else{
-//                bodyTextView.textColor  = .black
+//        if selectedDiscussion.message == ""{
 //
-//            }
-            
-        }
+//        }
         if selectedDiscussion.message != "" {
             do {
                 let formattedString = try NSAttributedString(data: ("<font size=\"+1.7\">\(selectedDiscussion.message)</font>").data(using: String.Encoding.unicode, allowLossyConversion: true)!, options: [ .documentType : NSAttributedString.DocumentType.html], documentAttributes: nil)
@@ -147,6 +93,7 @@ class DiscussionViewController: UIViewController, QLPreviewControllerDataSource{
                 string.setFontFace(font: UIFont.systemFont(ofSize: 15))
                 string.addAttributes(attributedStringName, range: NSRange(location: 0, length: formattedString.length))
                 bodyTextView.attributedText = string
+                
 
                
             } catch let error {
@@ -155,11 +102,9 @@ class DiscussionViewController: UIViewController, QLPreviewControllerDataSource{
             }
             
             bodyTextView.isEditable = false
-//            upperbodytextview.isEditable = false
-            
         }
     }
-    //
+
     
     
     
@@ -292,14 +237,17 @@ extension DiscussionViewController : UITableViewDataSource{
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "mycell", for: indexPath) as! DiscussionTableViewCell
-
-        cell.titleLabel.text = "done"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "discussionCell", for: indexPath) as! DiscussionTableViewCell
+//        let discussionVM = self.discussionViewModels[0]
+//      cell.titleLabel.text = discussionVM.name
+//       cell.timeLabel.text = discussionVM.date
+//       cell.titleLabel.text = "done"
+        let discussionViewModel = DiscussionViewModel(name: discussion.name, id: discussion.id, description: discussion.message, date: "09-01-2020", read: discussion.read)
         return cell
     }
 
 
 }
-//extension DiscussionViewController: UITableViewDelegate{
-//
-//}
+extension DiscussionViewController: UITableViewDelegate{
+
+}

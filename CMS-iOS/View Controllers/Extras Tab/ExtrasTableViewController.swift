@@ -18,7 +18,7 @@ class ExtrasTableViewController: UITableViewController, UIImagePickerControllerD
     
     fileprivate let cellId = "ExtrasCell"
     let pickerController = UIImagePickerController()
-    let items = [["CMS Website"], ["My Timetable"], ["About", "Report Bug", "Rate"], ["Logout"],["Allow Notifications"]]
+    let items = [["CMS Website"], ["My Timetable"],["Allow Notifications"],["About", "Report Bug", "Rate"],["Logout"]]
     let constants = Constants.Global.self
     
     override func viewDidLoad() {
@@ -123,7 +123,7 @@ class ExtrasTableViewController: UITableViewController, UIImagePickerControllerD
                 present(pickerController, animated: true, completion: nil)
             }
             break
-        case 2:
+        case 3:
             switch indexPath.row {
             case 0:
                 // about page
@@ -144,7 +144,7 @@ class ExtrasTableViewController: UITableViewController, UIImagePickerControllerD
                 break
             }
             break
-        case 3:
+        case 4:
             switch indexPath.row {
             case 0:
                 // logout
@@ -165,7 +165,8 @@ class ExtrasTableViewController: UITableViewController, UIImagePickerControllerD
             }
             break
             //
-        case 4:
+            //ISSUE#125 
+        case 2:
             switch indexPath.row {
             case 0:
                 // turn off push notifications
@@ -201,7 +202,7 @@ class ExtrasTableViewController: UITableViewController, UIImagePickerControllerD
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ["Website", "Timetable", "App", "","Notifications"][section]
+        return ["Website", "Timetable", "Notifications", "","App"][section]
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

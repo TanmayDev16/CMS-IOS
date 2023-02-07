@@ -17,7 +17,7 @@ class DiscussionTableViewCell: UITableViewCell {
     
     
 //    var cellDiscussion = Discussion()
-  //Tanmay
+
     override func awakeFromNib() {
         super.awakeFromNib()
         contentPreviewLabel.lineBreakMode = .byTruncatingTail
@@ -25,7 +25,7 @@ class DiscussionTableViewCell: UITableViewCell {
         //        contentPreviewLabel.text = cellDiscussion.message
         //        titleLabel.text = cellDiscussion.name
         // Initialization code
-//        var gl = self.titleLabel.text
+
        
     }
     

@@ -37,7 +37,6 @@ class ModuleViewController : UIViewController, QLPreviewControllerDataSource{
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
         descriptionText.layer.cornerRadius = 10
-//        descriptionText.backgroundColor = .blue
         openButton.layer.cornerRadius = 10
         //made backgroundcolor a bit light than before
         openButton.backgroundColor = .green
@@ -45,7 +44,6 @@ class ModuleViewController : UIViewController, QLPreviewControllerDataSource{
         openButton.isEnabled = true
         if selectedModule.name != "" {
             self.title = selectedModule.name
-//            self.title = "tanmay"
         } else {
             self.title = selectedModule.filename
         }

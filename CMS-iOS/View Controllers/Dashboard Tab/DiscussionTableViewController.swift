@@ -35,7 +35,8 @@ class DiscussionTableViewController: UITableViewController {
         gradientLoadingBar.fadeIn()
         canAddDiscussion()
         self.title = currentModule.name
-//        self.title = "tanmay"
+
+        //ISSUE#120
         self.tableView.setEmptyView(title: "", message: "No Further Announcements"){}
 
         self.loadOfflineDiscussions { (discussionViewModels) in
@@ -102,38 +103,14 @@ class DiscussionTableViewController: UITableViewController {
     
         let cell = tableView.dequeueReusableCell(withIdentifier: "discussionCell", for: indexPath) as! DiscussionTableViewCell
         let discussionVM = self.discussionViewModels[indexPath.row]
-
-        if tableView.visibleCells.isEmpty{
             cell.timeLabel.text = discussionVM.date
             cell.contentPreviewLabel.text = discussionVM.description
-//            cell.contentPreviewLabel.text = "previerw"
-//           var gl = cell.contentPreviewLabel.text
-            
             cell.titleLabel.text = discussionVM.name
-//            cell.titleLabel.textColor =
-            cell.titleLabel.text = "lala"
-            
             cell.timeLabel.font = discussionVM.dateFont
             cell.titleLabel.font = discussionVM.titleFont
             cell.contentPreviewLabel.font = discussionVM.desciptionFont
             self.tableView.separatorStyle = .singleLine
             return cell
-            
-            
-            
-            
-            
-          
-        }
-        else{
-            let cell : UITableViewCell = UITableViewCell(style : UITableViewCell.CellStyle.subtitle,reuseIdentifier: "goToDiscussionDirectly")
-            cell.backgroundColor = UIColor.green
-//     cell.titleLabel.text = "tanmay"
-            tableView.setEmptyView(title: "String", message: "asd"){}
-            
-            return cell
-
-        }
   
     }
     

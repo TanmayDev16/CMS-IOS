@@ -16,6 +16,7 @@ extension UITableView {
         let messageLabel = UILabel()
         let refreshButton = UIButton()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         refreshButton.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 24)

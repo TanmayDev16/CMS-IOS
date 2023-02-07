@@ -114,6 +114,25 @@ class BackgroundFetch {
         
     }
     
+    
+    //ability to push notifications
+//    func checkforPermission() {
+//    let notificationCenter = UNUserNotificationCenter.current () notificationCenter.getNotificationSettings { settings in
+//    switch settings.authorizationStatus ‹
+//    case caucnorazed.
+//    self.dispatchNotification ()
+//    case denied:
+//    case onovecermaneos notificationCenter. requestAuthorization (options: [.alert, «sound)) { didAllow, error in
+//    if
+//    didAllow {
+//    self.dispatchNotification()
+    
+
+    
+    
+    
+    
+    //
     public func sendNotification(title: String, body: String, identifier: String) {
         let notificationCenter = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()

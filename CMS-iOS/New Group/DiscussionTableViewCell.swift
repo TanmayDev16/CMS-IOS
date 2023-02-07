@@ -15,16 +15,20 @@ class DiscussionTableViewCell: UITableViewCell {
     @IBOutlet weak var contentPreviewLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
+    
 //    var cellDiscussion = Discussion()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         contentPreviewLabel.lineBreakMode = .byTruncatingTail
-//        timeLabel.text = setTimestamp(epochTime: "\(self.cellDiscussion.date)")
-//        contentPreviewLabel.text = cellDiscussion.message
-//        titleLabel.text = cellDiscussion.name
+        //        timeLabel.text = setTimestamp(epochTime: "\(self.cellDiscussion.date)")
+        //        contentPreviewLabel.text = cellDiscussion.message
+        //        titleLabel.text = cellDiscussion.name
         // Initialization code
+//        var gl = self.titleLabel.text
+       
     }
+    
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

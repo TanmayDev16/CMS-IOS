@@ -613,7 +613,7 @@ class DashboardViewController : UITableViewController, UISearchBarDelegate, UISe
                 }
             }
             
-            
+//            announcement
             return cell
         } else if indexPath.section == 1 {
             let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "ModuleTableViewCellSearching")
@@ -621,6 +621,11 @@ class DashboardViewController : UITableViewController, UISearchBarDelegate, UISe
             if indexPath.row < searchModules.count {
                 cell.textLabel?.text = searchModules[indexPath.row].name
                 cell.detailTextLabel?.text = searchModules[indexPath.row].coursename
+                
+                
+                //new contribution made by Tanmay
+                cell.contentView.backgroundColor = UIColor.darkGray
+                //
                 
             }
             

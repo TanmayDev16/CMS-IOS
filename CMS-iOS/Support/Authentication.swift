@@ -13,6 +13,7 @@ import Alamofire
 
 class Authentication {
     
+    
     static let shared = Authentication()
     private var realm: Realm
     

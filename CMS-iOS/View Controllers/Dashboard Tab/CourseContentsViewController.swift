@@ -5,7 +5,6 @@
 //  Created by Hridik Punukollu on 13/08/19.
 //  Copyright © 2019 Crux BPHC. All rights reserved.
 //
-
 import UIKit
 import Alamofire
 import SwiftyJSON
@@ -39,6 +38,8 @@ class CourseDetailsViewController : UITableViewController, UIGestureRecognizerDe
         self.title = currentCourse.displayname.cleanUp()
         if #available(iOS 13.0, *) {
             refreshControl?.tintColor = .label
+            
+            
         } else {
             // Fallback on earlier versions
             refreshControl?.tintColor = .black
@@ -74,6 +75,9 @@ class CourseDetailsViewController : UITableViewController, UIGestureRecognizerDe
             sectionArray = Array(sections)
         } else {
             gradientLoadingBar.fadeIn()
+//            let cell : UITableViewCell = UITableViewCell(style : UITableViewCell.CellStyle.subtitle,reuseIdentifier: "default notify")
+           let yourlabel = UILabel(frame: CGRectMake(100, 100, 100, 100))
+            yourlabel.text = "hello"
         }
         
     }
@@ -169,6 +173,27 @@ class CourseDetailsViewController : UITableViewController, UIGestureRecognizerDe
                                 } else if moduleData.name == "Announcements" {
                                     moduleData.read = true
                                 } else {
+                                    
+//                                    self.tableView.setEmptyView(title: "no", message: "snnouncements"){}
+       
+//
+//                                    self.tableView.setEmptyView(title: "No Announcements", message: "There are currently no announcements"){
+//                                        self.title = "no"
+//                                    }
+//
+//
+//
+                               
+                                       
+                                    
+
+
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
                                     moduleData.read = false
                                 }
                                 if courseContent[i]["modules"][j]["description"].string != nil {
@@ -236,7 +261,10 @@ class CourseDetailsViewController : UITableViewController, UIGestureRecognizerDe
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if sectionArray[indexPath.section].modules[indexPath.row].modname == "summary" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "discussionCell") as! DiscussionTableViewCell
-            cell.contentPreviewLabel.text = sectionArray[indexPath.section].modules[indexPath.row].moduleDescription.html2String
+            cell.contentPreviewLabel.text =
+              sectionArray[indexPath.section].modules[indexPath.row].moduleDescription.html2String
+            
+            
             cell.titleLabel.text = sectionArray[indexPath.section].modules[indexPath.row].name
             cell.timeLabel.text = ""
             return cell
@@ -246,6 +274,7 @@ class CourseDetailsViewController : UITableViewController, UIGestureRecognizerDe
         cell.textLabel?.text = sectionArray[indexPath.section].modules[indexPath.row].name.cleanUp()
         if !sectionArray[indexPath.section].modules[indexPath.row].read {
             cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+            
         }
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let dataPath = documentsDirectory.absoluteURL.appendingPathComponent(sectionArray[indexPath.section].modules[indexPath.row].coursename)
@@ -345,6 +374,7 @@ class CourseDetailsViewController : UITableViewController, UIGestureRecognizerDe
             // if name is not announcements show description
             if selectedModule.name == "Announcements" {
                 performSegue(withIdentifier: "goToAnnoucements", sender: self)
+//                print("hello")
             } else {
                 performSegue(withIdentifier: "goToModule", sender: self)
             }

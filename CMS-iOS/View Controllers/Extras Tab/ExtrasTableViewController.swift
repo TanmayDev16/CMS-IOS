@@ -18,7 +18,7 @@ class ExtrasTableViewController: UITableViewController, UIImagePickerControllerD
     
     fileprivate let cellId = "ExtrasCell"
     let pickerController = UIImagePickerController()
-    let items = [["CMS Website"], ["My Timetable"], ["About", "Report Bug", "Rate"], ["Logout"]]
+    let items = [["CMS Website"], ["My Timetable"], ["About", "Report Bug", "Rate"], ["Logout"],["Allow Notifications"]]
     let constants = Constants.Global.self
     
     override func viewDidLoad() {
@@ -50,6 +50,7 @@ class ExtrasTableViewController: UITableViewController, UIImagePickerControllerD
         
         if #available(iOS 13.0, *) {
             cell.textLabel?.textColor = .label
+
         } else {
             // Fallback on earlier versions
             cell.textLabel?.textColor = .black
@@ -63,6 +64,16 @@ class ExtrasTableViewController: UITableViewController, UIImagePickerControllerD
         } else if item == "My Timetable" {
             cell.accessoryType = .detailButton
             cell.imageView?.image = UIImage(named: "Timetable")
+        }
+        
+        else if item == "Allow Notifications"{
+            let switchview = UISwitch(frame: .zero)
+            cell.accessoryView = switchview
+            cell.imageView?.image = UIImage(named: "bell")
+            switchview.setOn(false, animated: true)
+            switchview.tag = indexPath.row
+//            cell.textLabel?.textColor = .label
+//            BackgroundFetch.sendNotification(<#T##self: BackgroundFetch##BackgroundFetch#>)
         }
         else {
             cell.accessoryType = .disclosureIndicator
@@ -153,13 +164,44 @@ class ExtrasTableViewController: UITableViewController, UIImagePickerControllerD
                 break
             }
             break
+            //
+        case 4:
+            switch indexPath.row {
+            case 0:
+                // turn off push notifications
+                guard let wstoken = KeychainWrapper.standard.string(forKey: "userPassword") else { return }
+                let alert = UIAlertController(title: "Confirmation", message: "Are you sure you want to turn off push notifications", preferredStyle: .alert)
+                let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+               
+                let pushoff = UIAlertAction(title: "Yes", style: .destructive) { (_) in
+                    NotificationManager.shared.deregisterDevice(wstoken: wstoken){
+                        self.performSegue(withIdentifier: "goToDashboard", sender: self)
+                        
+                    }
+
+                }
+                alert.addAction(cancel)
+                alert.addAction(pushoff)
+                self.present(alert, animated: true, completion: nil)
+                break
+               
+             
+            default:
+                break
+            }
+            break
+            
+            
+            
+            
+            //
         default:
             break
         }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ["Website", "Timetable", "App", ""][section]
+        return ["Website", "Timetable", "App", "","Notifications"][section]
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

@@ -175,7 +175,6 @@
 				0A9A960723572D62004ABB2F /* BubbleTabBar */,
 				0AC43B562350B11700A4ED1B /* New Group */,
 				0A58544F230163E9008FB370 /* Support */,
-				0A3DEB0422FDCCDA001B6BFD /* Font */,
 				0A3DEAF222FDCA69001B6BFD /* AppDelegate.swift */,
 				0AC33B6023020669004AE385 /* View Controllers */,
 				0AC33B6523021591004AE385 /* Data Models */,
@@ -222,6 +221,7 @@
 				E640E69824B4B3A3008C30E2 /* SpotlightIndex.swift */,
 				E6E419022540085000CCA829 /* DashboardDataManager.swift */,
 				E65B154A2595BF0900CD7A28 /* CourseUnenroller.swift */,
+				0A3DEB0422FDCCDA001B6BFD /* Font */,
 				E6F4B55625AED6B0001FFE27 /* NotificationManager.swift */,
 				E608469727E4B5B6001228FA /* UIViewControllerExtension.swift */,
 			);

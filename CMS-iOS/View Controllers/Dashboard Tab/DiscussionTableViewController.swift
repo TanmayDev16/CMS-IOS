@@ -35,6 +35,9 @@ class DiscussionTableViewController: UITableViewController {
         gradientLoadingBar.fadeIn()
         canAddDiscussion()
         self.title = currentModule.name
+//        self.title = "tanmay"
+        self.tableView.setEmptyView(title: "", message: "No Further Announcements"){}
+
         self.loadOfflineDiscussions { (discussionViewModels) in
             self.discussionViewModels = discussionViewModels
             self.tableView.reloadData()
@@ -63,6 +66,7 @@ class DiscussionTableViewController: UITableViewController {
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return discussionViewModels.count
+
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -95,16 +99,42 @@ class DiscussionTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
         let cell = tableView.dequeueReusableCell(withIdentifier: "discussionCell", for: indexPath) as! DiscussionTableViewCell
         let discussionVM = self.discussionViewModels[indexPath.row]
-        cell.timeLabel.text = discussionVM.date
-        cell.contentPreviewLabel.text = discussionVM.description
-        cell.titleLabel.text = discussionVM.name
-        cell.timeLabel.font = discussionVM.dateFont
-        cell.titleLabel.font = discussionVM.titleFont
-        cell.contentPreviewLabel.font = discussionVM.desciptionFont
-        self.tableView.separatorStyle = .singleLine
-        return cell
+
+        if tableView.visibleCells.isEmpty{
+            cell.timeLabel.text = discussionVM.date
+            cell.contentPreviewLabel.text = discussionVM.description
+//            cell.contentPreviewLabel.text = "previerw"
+//           var gl = cell.contentPreviewLabel.text
+            
+            cell.titleLabel.text = discussionVM.name
+//            cell.titleLabel.textColor =
+            cell.titleLabel.text = "lala"
+            
+            cell.timeLabel.font = discussionVM.dateFont
+            cell.titleLabel.font = discussionVM.titleFont
+            cell.contentPreviewLabel.font = discussionVM.desciptionFont
+            self.tableView.separatorStyle = .singleLine
+            return cell
+            
+            
+            
+            
+            
+          
+        }
+        else{
+            let cell : UITableViewCell = UITableViewCell(style : UITableViewCell.CellStyle.subtitle,reuseIdentifier: "goToDiscussionDirectly")
+            cell.backgroundColor = UIColor.green
+//     cell.titleLabel.text = "tanmay"
+            tableView.setEmptyView(title: "String", message: "asd"){}
+            
+            return cell
+
+        }
+  
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -112,7 +142,9 @@ class DiscussionTableViewController: UITableViewController {
         if segue.identifier == "goToDiscussionDetails" {
             let destinationVC = segue.destination as! DiscussionViewController
             destinationVC.selectedDiscussion = self.currentDiscussion
-            destinationVC.discussionName = self.currentModule.coursename
+//            destinationVC.discussionName = self.currentModule.coursename
+            destinationVC.discussionName = "tanmay"
+
         } else if segue.identifier == "goToAddDiscussion" {
             let destinationVC = segue.destination as! AddDiscussionViewController
             destinationVC.currentForum = String(self.currentModule.id)

@@ -13,23 +13,9 @@ import RealmSwift
 import IQKeyboardManagerSwift
 
 class DiscussionViewController: UIViewController, QLPreviewControllerDataSource{
-
-    
-
-    
-
-    
-
-    
-    
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var openButton: UIButton!
-    
-
     @IBOutlet weak var tableview: UITableView!
-
-
-    
     var quickLookController = QLPreviewController()
     var selectedDiscussion = Discussion()
     var qlLocation = URL(string: "")
@@ -242,7 +228,7 @@ extension DiscussionViewController : UITableViewDataSource{
 //      cell.titleLabel.text = discussionVM.name
 //       cell.timeLabel.text = discussionVM.date
 //       cell.titleLabel.text = "done"
-        let discussionViewModel = DiscussionViewModel(name: discussion.name, id: discussion.id, description: discussion.message, date: "09-01-2020", read: discussion.read)
+//        let discussionViewModel = DiscussionViewModel(name: "hello", id: discussion.id, description: discussion.message, date: "09-01-2020", read: discussion.read)
         return cell
     }
 
